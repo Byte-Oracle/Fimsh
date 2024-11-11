@@ -18,4 +18,15 @@ public class PlayerHandler : MonoBehaviour
             Debug.Log("Bobber casted");
         }
     }
+
+    public void OnDebugCatchFish(InputAction.CallbackContext context)
+    {
+        if (context.performed && Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            Fish fish = FishGenerator.Instance.GenerateFish();
+            Debug.Log(fish.name);
+            Debug.Log(fish.size);
+            Debug.Log(fish.specie);
+        }
+    }
 }
