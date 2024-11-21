@@ -9,6 +9,7 @@ public class PlayerHandler : MonoBehaviour
     public GameObject bobber;
 
     public float bobberCastSpeed = 1.5f;
+    
     public void OnCast(InputAction.CallbackContext context)
     {
         if (context.performed && bobber != null)

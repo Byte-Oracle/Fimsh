@@ -310,6 +310,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07321c7ed92a0174bae88b7638c51920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishJson: "{\r\n  \"species\": [\"Sturgeon\",\"Goldfish\",\"Koi Betta\",\"Trout\",\"Catfish\",\"Gar
+    Salmon\",\"Eel Milkfish\",\"Mackerel\",\"Perch\",\"Shad\"],\r\n  \"prefixes1\":
+    [\"Holy\",\"Blinding\",\"Sleezy\",\"Fat\",\"unsightly\",\"embarassed\",\"Happy\",\"Cutsey\",\"Gigantic\",\"Daring\",\"Repulsive\",\"Ambitious\"],\r\n 
+    \"prefixes2\": [\"Blue\",\"Plump\",\"Dark\",\"Sad\",\"Old\",\"Pink\",\"Gay\",\"Silly\",\"Sexy\",\"Afraid\",\"Surprised\",\"Rich\"]\r\n}"
+  fishingPool:
+    species: []
+    prefixes1: []
+    prefixes2: []
 --- !u!4 &289260883
 Transform:
   m_ObjectHideFlags: 0
