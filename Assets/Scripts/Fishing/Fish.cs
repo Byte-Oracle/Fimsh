@@ -1,17 +1,6 @@
-using UnityEngine;
-
-
 public class Fish
 {
-    public enum Species
-    {
-        Salmon,
-        Bass,
-        Trout,
-        Clownfish
-    }
-    
-    public string name;
-    public float size;
-    public Species specie;
+    public string Prefix1;
+    public string Prefix2;
+    public string Specie;
 }

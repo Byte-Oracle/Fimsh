@@ -24,10 +24,7 @@ public class PlayerHandler : MonoBehaviour
     {
         if (context.performed && Application.platform == RuntimePlatform.WindowsEditor)
         {
-            Fish fish = FishGenerator.Instance.GenerateFish();
-            Debug.Log(fish.name);
-            Debug.Log(fish.size);
-            Debug.Log(fish.specie);
+            FishGenerator.Instance.GenerateFish("Fish Pool 1");
         }
     }
 }

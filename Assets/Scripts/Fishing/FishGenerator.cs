@@ -1,16 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
 
 public class FishGenerator : MonoBehaviour
 {
     public static FishGenerator Instance;
-    public string fishJson = File.ReadAllText(Application.streamingAssetsPath + "/Fish.json");
-    public FishingPool fishingPool;
+    private string _fishingPoolDir = Application.streamingAssetsPath + "/Pools/";
+    public List<FishingPool> fishingPools;
     void Start()
     {
+        
         if (Instance != null && Instance != this)
         {
             Destroy(this); 
@@ -18,24 +21,47 @@ public class FishGenerator : MonoBehaviour
         {
             Instance = this;
         }
-        LoadFish(fishingPool, fishJson);
+        LoadFishingPools(_fishingPoolDir);
     }
+    
+    //Creates a new fishing pool for each fishing pool json
+    public void LoadFishingPools(string directory)
+    {
+        DirectoryInfo dirInfo = new DirectoryInfo(directory);
+        foreach (var file in dirInfo.GetFiles("*.json"))
+        {
+            string json = File.ReadAllText(_fishingPoolDir + "/" + file.Name);
+            fishingPools.Add(JsonUtility.FromJson<FishingPool>(json));
+        }
 
-    public void LoadFish(FishingPool pool, String json)
-    {
-        JsonUtility.FromJsonOverwrite(json, pool);
+        if (Application.isEditor)
+        {
+            foreach (FishingPool pool in fishingPools)
+            {
+                Debug.Log("Registed Pool: " + pool.name);
+            }
+        }
     }
     
-    
-    //TODO: Replace this with data from the json file instead of the Fish class, and delete the fish class
-    public Fish GenerateFish()
+    public Fish GenerateFish(string fishingPool)
     {
+        //TODO: Redo this method using the new json files
+        FishingPool pool = fishingPools.Find(fp => fp.name == fishingPool);;
+        if (pool == null)
+        {
+            Debug.LogError("Pool could not be found: " + fishingPool);
+            return null;
+        }
+        
         Fish fish = new Fish();
+        fish.Specie = pool.species[Random.Range(0, pool.species.Count)];
+        fish.Prefix1 = pool.prefixes1[Random.Range(0, pool.prefixes1.Count)];
+        fish.Prefix2 = pool.prefixes2[Random.Range(0, pool.prefixes2.Count)];
 
-        int chosenFish = Random.Range(0, Enum.GetValues((typeof(Fish.Species))).Length);
-        fish.specie = (Fish.Species)chosenFish;
-        fish.name = fish.specie.ToString();
-        fish.size = Random.Range(0, 100);
+        if (Application.isEditor)
+        {
+            Debug.Log("Generated Fish: "+ fish.Prefix1 + " " + fish.Prefix2 + " " + fish.Specie);
+        }
         
         return fish;
     }
