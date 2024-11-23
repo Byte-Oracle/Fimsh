@@ -1,6 +1,45 @@
 {
-  "name": "Fish Pool 2",
-  "species": ["Sturgeon","Goldfish","Koi Betta","Trout","Catfish","Gar Salmon","Eel Milkfish","Mackerel","Perch","Shad"],
-  "prefixes1": ["Holy","Blinding","Sleezy","Fat","unsightly","embarassed","Happy","Cutsey","Gigantic","Daring","Repulsive","Ambitious"],
-  "prefixes2": ["Blue","Plump","Dark","Sad","Old","Pink","Gay","Silly","Sexy","Afraid","Surprised","Rich"]
+  "poolname": "Fish Pool 2",
+  "version": 1.0,
+  "specie": [
+    {
+      "name":"Salmon",
+      "value":100,
+      "weight":1
+    },
+    {
+      "name":"Cod",
+      "value":50,
+      "weight":2
+    }
+  ],
+  "prefix": [
+    {
+      "name":"Plump",
+      "value":"25",
+      "weight":1
+    },
+    {
+      "name":"Fat",
+      "value":"10",
+      "weight":1
+    }
+  ],
+  "attribute": [
+    {
+      "name":"Fancy",
+      "value":"75",
+      "weight":1
+    },
+    {
+      "name":"Holy",
+      "value": 200,
+      "weight":1
+    },
+    {
+      "name":"Sleezy",
+      "value": 10,
+      "weight":2
+    }
+  ]
 }

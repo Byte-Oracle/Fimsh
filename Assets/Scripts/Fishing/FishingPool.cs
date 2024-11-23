@@ -1,13 +1,39 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
-[Serializable]
-public class FishingPool
-{
-    public string name;
-    public List<string> prefixes1;
-    public List<string> prefixes2;
-    public List<string> species;
-    
-    
+namespace Fishing{
+    [Serializable]
+    public struct Specie
+    {
+        public string name;
+        public int value;
+        public int weight;
+    }
+
+    [Serializable]
+    public struct Prefix
+    {
+        public string name;
+        public int value;
+        public int weight;
+    }
+
+    [Serializable]
+    public struct Attribute
+    {
+        public string name;
+        public int value;
+        public int weight;
+    }
+
+    [Serializable]
+    public class FishingPool
+    {
+        public string poolname;
+        public List<Specie> specie;
+        public List<Prefix> prefix;
+        public List<Attribute> attribute;
+    }
 }
+
