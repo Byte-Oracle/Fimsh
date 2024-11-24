@@ -11,25 +11,40 @@
       "name":"Cod",
       "value":50,
       "weight":2
+    },
+    {
+      "name":"Coyfish",
+      "value":25,
+      "weight":3
     }
   ],
   "prefix": [
     {
+      "name":"Microscopic",
+      "value":"-50",
+      "weight":1
+    },
+    {
+      "name":"Tiny",
+      "value":-10,
+      "weight":2
+    },
+    {
       "name":"Plump",
       "value":"25",
-      "weight":1
+      "weight":3
     },
     {
       "name":"Fat",
       "value":"10",
-      "weight":1
+      "weight":4
     }
   ],
   "attribute": [
     {
       "name":"Fancy",
       "value":"75",
-      "weight":1
+      "weight":2
     },
     {
       "name":"Holy",
@@ -39,7 +54,7 @@
     {
       "name":"Sleezy",
       "value": 10,
-      "weight":2
+      "weight":3
     }
   ]
 }

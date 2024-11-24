@@ -5,41 +5,56 @@
     {
       "name":"Salmon",
       "value":100,
-      "weight":1
+      "weight":10
     },
     {
       "name":"Cod",
       "value":50,
-      "weight":2
+      "weight":30
+    },
+    {
+      "name":"Coyfish",
+      "value":25,
+      "weight":50
     }
   ],
   "prefix": [
     {
+      "name":"Microscopic",
+      "value":"-50",
+      "weight":10
+    },
+    {
+      "name":"Tiny",
+      "value":-10,
+      "weight":15
+    },
+    {
       "name":"Plump",
       "value":"25",
-      "weight":1
+      "weight":30
     },
     {
       "name":"Fat",
       "value":"10",
-      "weight":1
+      "weight":50
     }
   ],
   "attribute": [
     {
       "name":"Fancy",
       "value":"75",
-      "weight":1
+      "weight":10
     },
     {
       "name":"Holy",
       "value": 200,
-      "weight":1
+      "weight":5
     },
     {
       "name":"Sleezy",
       "value": 10,
-      "weight":2
+      "weight":30
     }
   ]
 }
