@@ -1,35 +1,17 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
-public struct WeightedItem
-{
-    public string Name;
-    public int Weight;
-    public int Value;
-}
-
-public struct WeightedTable
-{
-    public int TotalWeight;
-    public List<WeightedItem> Items;
-}
-
-public struct RollResult
-{
-    public string Specie;
-    public string Prefix;
-    public string Attribute;
-    public int Value;
-}
+using Util;
 
 namespace Fishing {
     public class FishGenerator : MonoBehaviour
     {
         public static FishGenerator instance;
         private readonly string _fishingPoolDir = Application.streamingAssetsPath + "/Pools/";
+        
         public List<FishingPool> fishingPools;
+        private WeightedTableUtil _tableUtil;
+        private RollResult _rollResult;
         private void Start()
         {
             
@@ -76,7 +58,10 @@ namespace Fishing {
             }
             
             #region Table Creation
-            //Creates tables for various fish attributes and rolls them returning the result
+            //Creates tables for various fish attributes, rolls them, and then creates a fish along the way.
+            var fish = new Fish();
+            _tableUtil = new WeightedTableUtil();
+            
             var specieTable = new WeightedTable()
             {
                 TotalWeight = 0,
@@ -92,7 +77,11 @@ namespace Fishing {
                 wi.Value = s.value;
                 specieTable.Items.Add(wi);
             }
-
+            
+            _rollResult = _tableUtil.RollTable(specieTable);
+            fish.Specie = _rollResult.Name;
+            fish.Value += _rollResult.Value;
+            
             var prefixTable = new WeightedTable()
             {
                 TotalWeight = 0,
@@ -108,7 +97,10 @@ namespace Fishing {
                 wi.Value = p.value;
                 prefixTable.Items.Add(wi);
             }
-
+            _rollResult = _tableUtil.RollTable(prefixTable);
+            fish.Prefix = _rollResult.Name;
+            fish.Value += _rollResult.Value;
+            
             var attributeTable = new WeightedTable()
             {
                 TotalWeight = 0,
@@ -124,20 +116,10 @@ namespace Fishing {
                 wi.Value = a.value;
                 attributeTable.Items.Add(wi);
             }
-
-            var result = RollTable(specieTable, prefixTable, attributeTable);
+            _rollResult = _tableUtil.RollTable(attributeTable);
+            fish.Attribute = _rollResult.Name;
+            fish.Value += _rollResult.Value;
             #endregion
-            
-            var fish = new Fish();
-            var prefix = result.Prefix;
-            var attribute = result.Attribute;
-            var specie = result.Specie;
-            var value = result.Value;
-
-            fish.Specie = specie;
-            fish.Prefix = prefix;
-            fish.Attribute = attribute;
-            fish.Value += value;
 
             if (Application.isEditor)
             {
@@ -148,55 +130,5 @@ namespace Fishing {
             return fish;
         }
         #endregion
-
-        #region RollResult Function
-        private RollResult RollTable(WeightedTable specieTable, WeightedTable prefixTable, WeightedTable attributeTable)
-        {
-            //TODO: This feels unholy and I think there is a much better way to make this only require on input but 
-            //That is a later issue :')
-            
-            var result = new RollResult();
-            
-            var specieRandom = Random.Range(0, specieTable.TotalWeight);
-            var prefixRandom = Random.Range(0, prefixTable.TotalWeight);
-            var attributeRandom = Random.Range(0, attributeTable.TotalWeight);
-
-            for (var i = 0; i < specieTable.Items.Count; i++)
-            {
-                if (specieRandom <= specieTable.Items[i].Weight)
-                {
-                    result.Specie = specieTable.Items[i].Name;
-                    result.Value += specieTable.Items[i].Value;
-                    break;
-                }
-                else specieRandom -= specieTable.Items[i].Weight;
-            }
-            
-            for (var i = 0; i < prefixTable.Items.Count; i++)
-            {
-                if (prefixRandom <= prefixTable.Items[i].Weight)
-                {
-                    result.Prefix = prefixTable.Items[i].Name;
-                    result.Value += prefixTable.Items[i].Value;
-                    break;
-                }
-                else prefixRandom -= prefixTable.Items[i].Weight;
-            }
-            
-            for (var i = 0; i < attributeTable.Items.Count; i++)
-            {
-                if (attributeRandom <= attributeTable.Items[i].Weight)
-                {
-                    result.Attribute = attributeTable.Items[i].Name;
-                    result.Value += attributeTable.Items[i].Value;
-                    break;
-                }
-                else attributeRandom -= attributeTable.Items[i].Weight;
-            }
-            
-            return result;
-        }
-        #endregion
     }
 }
-
