@@ -46,8 +46,7 @@ namespace Fishing {
             }
         }
         #endregion
-
-        #region GenerateFish Function
+        
         public Fish GenerateFish(string fishingPool)
         {
             var pool = fishingPools.Find(fp => fp.poolname == fishingPool);
@@ -57,7 +56,7 @@ namespace Fishing {
                 return null;
             }
             
-            #region Table Creation
+            #region Table Creation and Fish Construction
             //Creates tables for various fish attributes, rolls them, and then creates a fish along the way.
             var fish = new Fish();
             _tableUtil = new WeightedTableUtil();
@@ -119,7 +118,7 @@ namespace Fishing {
             _rollResult = _tableUtil.RollTable(attributeTable);
             fish.Attribute = _rollResult.Name;
             fish.Value += _rollResult.Value;
-            #endregion
+            
 
             if (Application.isEditor)
             {
@@ -128,7 +127,7 @@ namespace Fishing {
             }
             
             return fish;
+            #endregion
         }
-        #endregion
     }
 }
