@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1167489361147941672, guid: 3e04ef770cd21fc4d94eb7f5f1e51af0, type: 3}
       propertyPath: m_Name
-      value: Fish
+      value: Shad
       objectReference: {fileID: 0}
+    - target: {fileID: 4429035169609651887, guid: 3e04ef770cd21fc4d94eb7f5f1e51af0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4549871927518758641, guid: f204216a82eb7ca4785de768fa9636f7, type: 3}
     - target: {fileID: 5522624045263996498, guid: 3e04ef770cd21fc4d94eb7f5f1e51af0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
