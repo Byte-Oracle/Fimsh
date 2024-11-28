@@ -8,7 +8,7 @@ namespace debug.ui
     {
         public void GenerateFish()
         {
-            Fish fish = FishGenerator.instance.GenerateFish("Fish Pool 1");
+            Fish fish = FishGenerator.instance.GenerateFish("Spring Breeze");
             
             FishRendererManager.instance.SetFish(fish.Specie, fish.Prefix, fish.Attribute);
         }

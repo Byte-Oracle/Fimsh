@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bobber_0: -4523835606219980744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
